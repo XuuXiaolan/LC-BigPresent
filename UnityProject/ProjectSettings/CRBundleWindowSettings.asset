@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10ba37b74c3357e42a779e4e104c1dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildOutputPath: F:/Ammar Stuff/ModdingProject/LC-BigPresent/LC-ExampleEnemy/UnityProject/Assets/ModAssets/BigPresent/AssetBundles
-  buildOnlyChanged: 1
+  buildOutputPath: F:/Ammar Stuff/ModdingProject/LC-BigPresent/UnityProject/Assets/ModAssets/BigPresentMod/AssetBundles
+  buildOnlyChanged: 0
   processDependenciesRecursively: 0
   assetSortOption: 1
   scaleFactor: 1.1

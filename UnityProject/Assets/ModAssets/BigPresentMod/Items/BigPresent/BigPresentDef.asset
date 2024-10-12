@@ -10,42 +10,43 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c30496d6ae6d6f907456e10a94e01ec6, type: 3}
-  m_Name: ExampleBigPresentDef
+  m_Name: BigPresentDef
   m_EditorClassIdentifier: 
   itemId: 0
   itemName: Big Present
   spawnPositionTypes: []
   twoHanded: 1
   twoHandedAnimation: 1
-  disableHandsOnWall: 0
-  canBeGrabbedBeforeGameStart: 0
+  disableHandsOnWall: 1
+  canBeGrabbedBeforeGameStart: 1
   weight: 1.45
-  itemIsTrigger: 0
+  itemIsTrigger: 1
   holdButtonUse: 0
   itemSpawnsOnGround: 0
   isConductiveMetal: 0
-  isScrap: 0
+  isScrap: 1
   creditsWorth: 0
   lockedInDemo: 0
   highestSalePercentage: 0
-  maxValue: 0
-  minValue: 0
-  spawnPrefab: {fileID: 0}
+  maxValue: 140
+  minValue: 60
+  spawnPrefab: {fileID: 1308653859615098, guid: bf2b62dcca50f0947b42ad24578892a8,
+    type: 3}
   requiresBattery: 0
   batteryUsage: 0
   automaticallySetUsingPower: 0
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 7590a8c30a20b204cbdfb90184b569f2, type: 3}
   grabAnim: HoldForward
   useAnim: 
   pocketAnim: 
   throwAnim: 
   grabAnimationTime: 0
-  grabSFX: {fileID: 0}
-  dropSFX: {fileID: 0}
+  grabSFX: {fileID: 8300000, guid: debddbb50127a9646a3eb6691f317ca6, type: 3}
+  dropSFX: {fileID: 8300000, guid: c16cd204aa981994ebd449fe17e26d1b, type: 3}
   pocketSFX: {fileID: 0}
   throwSFX: {fileID: 0}
   syncGrabFunction: 0
-  syncUseFunction: 0
+  syncUseFunction: 1
   syncDiscardFunction: 0
   syncInteractLRFunction: 0
   saveItemVariable: 0
@@ -54,8 +55,8 @@ MonoBehaviour:
   verticalOffset: 0
   floorYOffset: 0
   allowDroppingAheadOfPlayer: 0
-  restingRotation: {x: 0, y: 0, z: 0}
-  rotationOffset: {x: 0, y: 0, z: 0}
+  restingRotation: {x: -90, y: 0, z: 0}
+  rotationOffset: {x: -90, y: 0, z: 0}
   positionOffset: {x: 0, y: 0, z: 0}
   meshOffset: 0
   meshVariants: []

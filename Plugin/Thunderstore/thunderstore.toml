@@ -22,8 +22,8 @@ source = "../bin/Release/netstandard2.1/XuXiaolan.BigPresent.dll"
 target = "plugins/BigPresent/"
 
 [[build.copy]]
-source = "../../UnityProject/AssetBundles/StandaloneWindows/modassets"
-target = "plugins/BigPresent/"
+source = "../../UnityProject/AssetBundles/StandaloneWindows/bigpresentassets"
+target = "plugins/BigPresent/Assets/"
 
 [[build.copy]]
 source = "./CHANGELOG.md"
