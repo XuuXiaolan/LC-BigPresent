@@ -5,7 +5,7 @@ schemaVersion = "0.0.1"
 repository = "https://thunderstore.io"
 
 [package]
-description = "Example Enemy for Lethal Company."
+description = "Bigger Present..."
 websiteUrl = "https://github.com/XuXiaolan/LC-BigPresent"
 containsNsfwContent = false
 [package.dependencies]
@@ -18,11 +18,11 @@ readme = "./README.md"
 outdir = "./Packages"
 
 [[build.copy]]
-source = "../bin/Release/netstandard2.1/XuXiaolan.BigPresent.dll"
+source = "../bin/Release/netstandard2.1/com.github.xuuxiaolan.BigPresent.dll"
 target = "plugins/BigPresent/"
 
 [[build.copy]]
-source = "../../UnityProject/AssetBundles/StandaloneWindows/bigpresentassets"
+source = "../../../../UnityProject/Assets/ModAssets/BigPresentMod/AssetBundles/bigpresentassets"
 target = "plugins/BigPresent/Assets/"
 
 [[build.copy]]
