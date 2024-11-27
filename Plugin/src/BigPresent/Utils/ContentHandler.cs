@@ -17,6 +17,8 @@ public class ContentHandler
     internal void RegisterScrapWithConfig(string configMoonRarity, Item scrap)
     {
         (Dictionary<Levels.LevelTypes, int> spawnRateByLevelType, Dictionary<string, int> spawnRateByCustomLevelType) = ConfigParsing(configMoonRarity);
+        Utilities.FixMixerGroups(scrap.spawnPrefab);
+        NetworkPrefabs.RegisterNetworkPrefab(scrap.spawnPrefab);
         LethalLib.Modules.Items.RegisterScrap(scrap, spawnRateByLevelType, spawnRateByCustomLevelType);
     }
 

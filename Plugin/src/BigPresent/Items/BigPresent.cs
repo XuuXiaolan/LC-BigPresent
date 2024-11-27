@@ -50,10 +50,17 @@ public class BigPresent : GrabbableObject
                 Item item = items[presentRandom.Next(0, items.Count)];
                 var obj = GameObject.Instantiate(item.spawnPrefab, spawnPosition, Quaternion.Euler(item.restingRotation), StartOfRound.Instance.propsContainer);
                 obj.GetComponent<NetworkObject>().Spawn();
+                int value = presentRandom.Next(item.minValue, item.maxValue);
+                var scanNode = obj.GetComponentInChildren<ScanNodeProperties>();
+                scanNode.scrapValue = value;
+                scanNode.subText = $"Value: ${value}";
+                obj.GetComponent<GrabbableObject>().scrapValue = value;
+                UpdateScanNodeClientRpc(new NetworkObjectReference(obj), value);
             }
         }
         else
         {
+            RoundManager.Instance.SpawnEnemyGameObject(playerHeldBy.transform.position, 0f, -1, null);
             SpawnExplosionClientRpc();
         }
     }
@@ -61,6 +68,19 @@ public class BigPresent : GrabbableObject
     [ClientRpc]
     private void SpawnExplosionClientRpc()
     {
-        Landmine.SpawnExplosion(playerHeldBy.transform.position, true, 3, 20, 80, 100, null, true);
+        Landmine.SpawnExplosion(playerHeldBy.transform.position, true, 5, 20, 80, 100, null, true);
+    }
+
+    [ClientRpc]
+    public void UpdateScanNodeClientRpc(NetworkObjectReference go, int value)
+    {
+        go.TryGet(out NetworkObject netObj);
+        if(netObj != null)
+        {
+            if (netObj.gameObject.TryGetComponent(out GrabbableObject grabbableObject))
+            {
+                grabbableObject.SetScrapValue(value);
+            }
+        }
     }
 }
