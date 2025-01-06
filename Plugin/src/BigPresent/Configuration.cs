@@ -7,6 +7,7 @@ public class PluginConfig
 {
     // For more info on custom configs, see https://lethal.wiki/dev/intermediate/custom-configs
     public ConfigEntry<string> ConfigBigPresentSpawnWeight;
+    public ConfigEntry<string> ConfigBlacklistEnemies;
 
     public PluginConfig(ConfigFile cfg)
     {
@@ -16,6 +17,10 @@ public class PluginConfig
                                 "The spawn chance weight for Big Present, relative to other existing items.\n" +
                                 "Goes up from 0, lower is more rare, 100 and up is very common. \n" +
                                 "Allows the use of Moon names in the config.");
+        ConfigBlacklistEnemies = cfg.Bind("Big Present",
+                                "Big Present | Blacklist Enemies",
+                                "",
+                                "Comma separated list of enemies to blacklist from the Big Present spawning.");
         ClearUnusedEntries(cfg);
     }
 

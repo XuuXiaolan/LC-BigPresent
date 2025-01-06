@@ -52,4 +52,4 @@ UpgradeLog.htm
 
 # Exclude stuff
 !/dlls/LethalLib.dll
-!/Thunderstore/Packages/*.txt
+/src/BigPresent/Thunderstore/Packages/

@@ -8,13 +8,22 @@ public class BigPresent : GrabbableObject
 {
     private List<Item> items = new();
     private System.Random presentRandom = new();
-    
+
+    public static List<BigPresent> Instances = new();
+    public override void OnNetworkDespawn()
+    {
+        base.OnNetworkDespawn();
+        Instances.Remove(this);
+    }
+
     public override void Start()
     {
         base.Start();
-        presentRandom = new System.Random(StartOfRound.Instance.randomMapSeed);
+        Instances.Add(this);
+        presentRandom = new System.Random(StartOfRound.Instance.randomMapSeed + Instances.Count);
         foreach (SpawnableItemWithRarity spawnableItemWithRarity in RoundManager.Instance.currentLevel.spawnableScrap)
         {
+            if (spawnableItemWithRarity.spawnableItem == this.itemProperties) continue;
             items.Add(spawnableItemWithRarity.spawnableItem);
         }
     }
@@ -60,15 +69,31 @@ public class BigPresent : GrabbableObject
         }
         else
         {
-            RoundManager.Instance.SpawnEnemyGameObject(playerHeldBy.transform.position, 0f, -1, null);
-            SpawnExplosionClientRpc();
+            List<EnemyType> enemyTypes = new();
+            foreach (SpawnableEnemyWithRarity enemy in RoundManager.Instance.currentLevel.Enemies)
+            {
+                if (Plugin.BoundConfig.ConfigBlacklistEnemies.Value.Contains(enemy.enemyType.enemyName))
+                {
+                    continue;
+                }
+                enemyTypes.Add(enemy.enemyType);
+            }
+            EnemyType enemyType = enemyTypes[presentRandom.Next(0, enemyTypes.Count)];
+            SpawnExplosionClientRpc(playerHeldBy.transform.position);
+            RoundManager.Instance.SpawnEnemyGameObject(playerHeldBy.transform.position, 0f, -1, enemyType);
         }
     }
 
     [ClientRpc]
-    private void SpawnExplosionClientRpc()
+    private void SpawnExplosionClientRpc(Vector3 spawnPosition)
     {
-        Landmine.SpawnExplosion(playerHeldBy.transform.position, true, 5, 20, 80, 100, null, true);
+        StartCoroutine(DelayedExplosion(spawnPosition));
+    }
+
+    private IEnumerator DelayedExplosion(Vector3 spawnPosition)
+    {
+        yield return new WaitForSeconds(0.2f);
+        Landmine.SpawnExplosion(spawnPosition, true, 5, 20, 80, 100, null, true);
     }
 
     [ClientRpc]
